@@ -1,0 +1,29 @@
+@media (max-width: 768px) {
+	.dropdown h3 {
+		color: #eee;
+	}
+	.dropdown-lr label {
+		color: #eee;
+	}
+}
+.container-fluid{
+    margin-right: 200px;
+    color: #eee;
+
+}
+#register{
+  padding-right: 20px;
+}
+ul.dropdown-lr {
+  width: 300px;
+
+}
+
+#initial-results {
+    margin: 0 30px;
+}
+
+.card.city-card {
+    float: left;
+    width: 300px;
+}
