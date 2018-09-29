@@ -43,3 +43,11 @@ ul.dropdown-lr {
     display: inline;
 }
 
+.card.city-card {
+   /* float: left; */
+    width: 300px;
+}
+
+#results {
+   /* float: left; */
+}
