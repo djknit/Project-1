@@ -40,5 +40,7 @@ ul.dropdown-lr {
 }
 .update{
     background-color: cornflowerblue;
-}
 
+.city-card {
+    width: 300px;
+}
