@@ -47,7 +47,7 @@ function displayCityInfo(city) {
                         <li>Humidity: ${city.currentWeather.humidity}</li>
                     </ul>
                 </p>
-                <button class="update" id="${myCities.indexOf(city)}">Update time and weather</button>
+                <button class="update" cityId="${myCities.indexOf(city)}">Update time and weather</button>
             </div>
         </div>`
     );
@@ -56,8 +56,10 @@ function displayCityInfo(city) {
 
 // Update time and weather when the update button is clicked
 $(document).on("click", ".update", function() {
-    var clickedCity = myCities[$(this).attr("id")];
+    var clickedCityIndex = $(this).attr("cityId");
+    var clickedCity = myCities[clickedCityIndex];
     // console.log(clickedCity)
     clickedCity.getCurrentTime();
+    $("#" + clickedCityIndex).remove();
     clickedCity.getCurrentWeather();
 });
