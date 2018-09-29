@@ -33,8 +33,9 @@ function displayCityInfo(city) {
 
 
     var newDiv = $(
-        `<div class="card city-card" id="${myCities.indexOf(city)}">
+        `<div class="card city-card d-inline-block my-2" id="${myCities.indexOf(city)}">
             <div class="card-body">
+                <button class="glyphicon glyphicon-remove-sign"></button>
                 <h3>${city.name}</h3>
                 <p>Population: ${city.population}</p>
                 <p>Current time: ${city.currentTime}</p>
