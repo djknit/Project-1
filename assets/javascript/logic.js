@@ -33,7 +33,7 @@ function displayCityInfo(city) {
 
 
     var newDiv = $(
-        `<div class="card city-card" id="${myCities.indexOf(city)}">
+        `<div class="card city-card d-inline-block mx-1" id="${myCities.indexOf(city)}">
             <div class="card-body">
                 <h3>${city.name}</h3>
                 <p>Population: ${city.population}</p>

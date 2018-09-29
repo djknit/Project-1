@@ -24,6 +24,10 @@ ul.dropdown-lr {
 }
 
 .card.city-card {
-    float: left;
+   /* float: left; */
     width: 300px;
+}
+
+#results {
+   /* float: left; */
 }
