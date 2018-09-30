@@ -1,3 +1,10 @@
+body {   
+    background-image: url(travelimage.jpg);
+    background-size: cover;
+    height: 100%;
+    overflow: hidden;
+}
+
 /* mobile fix */
 @media (max-width: 768px) {
 	.dropdown h3 {
@@ -39,12 +46,13 @@ ul.dropdown-lr {
     background-color: rgb(0, 255, 128);
 }
 .update{
-    background-color: cornflowerblue;
+  /*  background-color: white; */
+    margin: 0 auto;
 }
 
 .city-card {
     width: 300px;
-
+    border: 1px solid rgb(65, 137, 245);
 }
 
 #results {
