@@ -10,7 +10,7 @@ $("#submit-search").on("click", function(event) {
 // Function for displaying initial results to be ran after API call is complete
 function displayInitialResults() {
     if (initialResults.length === 0) {
-        $("#initial-results").html("No results match that search. \nTry typing your search differently, or search for a different City.");
+        $("#initial-results").html("No results match that search. \nTry typing your search differently, or search for a different City.\nInclude only the city name or the city and country separated by a comma. Make sure that you have spelled your search correctly.");
     }
     else {
         $("#initial-results").html($("<p>Please click on the correct result.</p>"));
@@ -33,8 +33,11 @@ function displayCityInfo(city) {
 
 
     var newDiv = $(
-        `<div class="card city-card d-inline-block mx-1" id="${myCities.indexOf(city)}">
+        `<div class="card city-card d-inline-block mx-1 my-1" id="${myCities.indexOf(city)}">
             <div class="card-body">
+                <button class="btn btn-outline-danger" cityId="${myCities.indexOf(city)}">
+                    <i class="fa fa-window-close" aria-hidden="true"></i>
+                </button>
                 <h3>${city.name}</h3>
                 <p>Population: ${city.population}</p>
                 <p>Current time: ${city.currentTime}</p>
@@ -47,11 +50,13 @@ function displayCityInfo(city) {
                         <li>Humidity: ${city.currentWeather.humidity}</li>
                     </ul>
                 </p>
-                <button class="update" cityId="${myCities.indexOf(city)}">Update time and weather</button>
+                <button class="update btn btn-outline-primary" cityId="${myCities.indexOf(city)}">Update time and weather</button>
             </div>
         </div>`
     );
     $("#results").append(newDiv);
+
+    mapCity(city);
 }
 
 // Update time and weather when the update button is clicked
@@ -62,4 +67,9 @@ $(document).on("click", ".update", function() {
     clickedCity.getCurrentTime();
     $("#" + clickedCityIndex).remove();
     clickedCity.getCurrentWeather();
+});
+
+// delete city info card if the red exit button is clicked
+$(document).on("click", ".btn-outline-danger", function() {
+    $("#" + $(this).attr("cityId")).detach();
 });
