@@ -1,8 +1,6 @@
 body {   
     background-image: url(travelimage.jpg);
     background-size: cover;
-    height: 100%;
-    overflow: hidden;
 }
 
 /* mobile fix */
