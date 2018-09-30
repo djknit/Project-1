@@ -33,7 +33,7 @@ function displayCityInfo(city) {
 
 
     var newDiv = $(
-        `<div class="card city-card d-inline-block mx-1" id="${myCities.indexOf(city)}">
+        `<div class="card city-card d-inline-block mx-1 my-1" id="${myCities.indexOf(city)}">
             <div class="card-body">
                 <button class="btn btn-outline-danger" cityId="${myCities.indexOf(city)}">
                     <i class="fa fa-window-close" aria-hidden="true"></i>
@@ -50,7 +50,7 @@ function displayCityInfo(city) {
                         <li>Humidity: ${city.currentWeather.humidity}</li>
                     </ul>
                 </p>
-                <button class="update" cityId="${myCities.indexOf(city)}">Update time and weather</button>
+                <button class="update btn btn-outline-primary" cityId="${myCities.indexOf(city)}">Update time and weather</button>
             </div>
         </div>`
     );
