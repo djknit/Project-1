@@ -40,9 +40,24 @@ ul.dropdown-lr {
 }
 .update{
     background-color: cornflowerblue;
-    display: inline;
 }
 
 .city-card {
     width: 300px;
+
+}
+
+#results {
+   /* float: left; */
+}
+
+.btn-outline-danger {
+    width: 40px;
+    height: 40px;
+    float: right;
+}
+
+.fa {
+    background-color: white;
+    color: red;
 }
