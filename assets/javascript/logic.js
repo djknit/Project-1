@@ -46,7 +46,7 @@ function displayCityInfo(city) {
                 <p>Currency: ${city.currency}</p>
                 <p>Current weather: ${city.currentWeather.shortDescription}
                     <ul>
-                        <li>Temperature: ${city.currentWeather.temp.celcius} Celcius/ ${city.currentWeather.temp.fahrenheit} Fahrenheit</li>
+                        <li>Temperature: ${city.currentWeather.temp.celcius} &degC/ ${city.currentWeather.temp.fahrenheit} &degF</li>
                         <li>Humidity: ${city.currentWeather.humidity}</li>
                     </ul>
                 </p>
