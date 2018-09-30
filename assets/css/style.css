@@ -45,3 +45,9 @@ ul.dropdown-lr {
 .city-card {
     width: 300px;
 }
+
+#my-map {
+    height: 300px;
+    width: 400px;
+    float: right;
+}
