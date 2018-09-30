@@ -31,3 +31,14 @@ ul.dropdown-lr {
 #results {
    /* float: left; */
 }
+
+.btn-outline-danger {
+    width: 40px;
+    height: 40px;
+    float: right;
+}
+
+.fa {
+    background-color: white;
+    color: red;
+}
