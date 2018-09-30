@@ -33,8 +33,11 @@ function displayCityInfo(city) {
 
 
     var newDiv = $(
-        `<div class="card city-card d-inline-block mx-1" id="${myCities.indexOf(city)}">
+        `<div class="card city-card d-inline-block mx-1 my-1" id="${myCities.indexOf(city)}">
             <div class="card-body">
+                <button class="btn btn-outline-danger" cityId="${myCities.indexOf(city)}">
+                    <i class="fa fa-window-close" aria-hidden="true"></i>
+                </button>
                 <h3>${city.name}</h3>
                 <p>Population: ${city.population}</p>
                 <p>Current time: ${city.currentTime}</p>
@@ -47,7 +50,7 @@ function displayCityInfo(city) {
                         <li>Humidity: ${city.currentWeather.humidity}</li>
                     </ul>
                 </p>
-                <button class="update" cityId="${myCities.indexOf(city)}">Update time and weather</button>
+                <button class="update btn btn-outline-primary" cityId="${myCities.indexOf(city)}">Update time and weather</button>
             </div>
         </div>`
     );
@@ -64,4 +67,9 @@ $(document).on("click", ".update", function() {
     clickedCity.getCurrentTime();
     $("#" + clickedCityIndex).remove();
     clickedCity.getCurrentWeather();
+});
+
+// delete city info card if the red exit button is clicked
+$(document).on("click", ".btn-outline-danger", function() {
+    $("#" + $(this).attr("cityId")).detach();
 });
