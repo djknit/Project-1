@@ -40,12 +40,11 @@ ul.dropdown-lr {
 }
 .update{
     background-color: cornflowerblue;
-    display: inline;
 }
 
-.card.city-card {
-   /* float: left; */
+.city-card {
     width: 300px;
+
 }
 
 #results {

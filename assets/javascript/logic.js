@@ -59,9 +59,11 @@ function displayCityInfo(city) {
 
 // Update time and weather when the update button is clicked
 $(document).on("click", ".update", function() {
-    var clickedCity = myCities[$(this).attr("id")];
+    var clickedCityIndex = $(this).attr("cityId");
+    var clickedCity = myCities[clickedCityIndex];
     // console.log(clickedCity)
     clickedCity.getCurrentTime();
+    $("#" + clickedCityIndex).remove();
     clickedCity.getCurrentWeather();
 });
 
