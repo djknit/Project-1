@@ -1,4 +1,4 @@
-console.log("logic");
+// console.log("logic");
 $("#submit-search").on("click", function(event) {
     console.log("submit button clicked")
     event.preventDefault();
@@ -80,5 +80,23 @@ $(document).on("click", ".update", function() {
 
 // delete city info card if the red exit button is clicked
 $(document).on("click", ".btn-outline-danger", function() {
-    $("#" + $(this).attr("cityId")).detach();
+    // $("#" + $(this).attr("cityId")).detach();
+
+    // Remove the corresponding city object from the myCities array
+    myCities.splice($(this).attr("cityId"), 1);
+    // Empty and then repopulate the cities info display from the array
+    populatePageFromArray();
+    // Store the new array in local storage
+    saveCitiesInLocalStorage();
+
+});
+
+// On page load, check local storage and populate page from cities stored in local storage
+$(document).ready(function() {
+    // If there are cities saved in local storage, create page display using saved cities
+    if (localStorage.getItem("myCities")) {
+        getCitiesFromLocalStorage();
+        populatePageFromArray();
+    }
+    
 });

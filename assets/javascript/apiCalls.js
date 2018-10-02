@@ -37,20 +37,6 @@ function searchForCity(searchTerm) {
         // Run functioni to display initial results
         displayInitialResults();
 
-        // If no cities were returned...
-        if (initialResults.length === 0) {
-            // Run function to alert the user that no results were found for their search
-            // displayNoResults();
-            console.log("No cities found to match search.");
-        }
-        // If the array of matching results is not empty...
-        else {
-            // Run function to display list of city names returned and allow the user to choose correct one
-            // displayInitialResults(matchingCities);
-            initialResults.forEach(function(city, index) {
-                console.log(index + ": " + city.fullName);
-            });
-        }
     // Or if the API call returns an error...
     }).fail(function(response) {
         console.error(response);
@@ -110,9 +96,13 @@ function getCityInfo() {
                     // Set the city's current weather
                     thisCity.getCurrentWeather(function() {
                         displayCityInfo(thisCity);
-                        console.log(thisCity)
+                        // console.log(thisCity)
                     });
-                    console.log(thisCity);
+                    // console.log(thisCity);
+
+                    // Store the updated myCities array in local storage
+                    saveCitiesInLocalStorage();
+
                 }).fail(function(timeOffsetResponse) {
                     console.error(timeOffsetResponse);
                 });
@@ -171,12 +161,12 @@ function getCurrentWeather(callback) {
 
 // ---
 // Declaring a sample city to use for testing API calls for getting full city info
-var lawrence = {
-    fullName: "Lawrence, Kansas",
-    uniqueSearchUrl: "https://api.teleport.org/api/cities/geonameid:4274277/",
-    // Attaching method that will be declared below for getting the full info if city is selected
-    getCityInfo,
-    // Attaching methods used to update time and weather once city has full information attached
-    getCurrentTime,
-    getCurrentWeather
-}
+// var lawrence = {
+//     fullName: "Lawrence, Kansas",
+//     uniqueSearchUrl: "https://api.teleport.org/api/cities/geonameid:4274277/",
+//     // Attaching method that will be declared below for getting the full info if city is selected
+//     getCityInfo,
+//     // Attaching methods used to update time and weather once city has full information attached
+//     getCurrentTime,
+//     getCurrentWeather
+// }

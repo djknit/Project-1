@@ -3,6 +3,8 @@ function saveCitiesInLocalStorage() {
     localStorage.clear();
     // Store the array of city objects as a string in the local storage
     localStorage.setItem("myCities", JSON.stringify(myCities));
+
+    console.log(JSON.parse(localStorage.getItem("myCities")));
 } 
 
 // Function for setting the cities array from local storage
