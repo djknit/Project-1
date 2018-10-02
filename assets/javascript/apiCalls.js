@@ -141,7 +141,6 @@ function getCurrentTime() {
 // ----------------------------------
 // Method for setting the current temperature and air pressure of a city by querying the Open Weather API
 function getCurrentWeather(callback) {
-    console.log("get current weather")
     var thisCity = this;
     var apiKey = "8aa4ec5578f127f51276588e1b8842c4";
     var latitude = thisCity.latitude;
@@ -163,7 +162,6 @@ function getCurrentWeather(callback) {
 
         // Run callback if one was given
         if (callback) {
-            console.log("callback: " + callback)
             callback();
         }
     }).fail(function(response) {

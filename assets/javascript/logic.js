@@ -67,14 +67,14 @@ function displayCityInfo(city) {
 $(document).on("click", ".update", function() {
     var clickedCityIndex = $(this).attr("cityId");
     var clickedCity = myCities[clickedCityIndex];
-    // console.log(clickedCity)
+    // console.log(clickedCity);
     clickedCity.getCurrentTime();
     // Update weather info from API and then update the relevent page content after the response is returned and the variables are updated
     clickedCity.getCurrentWeather(function() {
-        $("time-" + clickedCityIndex).html(`Current time: ${clickedCity.currentTime}`);
-        $("weather-" + clickedCityIndex).html(`Current weather: ${clickedCity.currentWeather.shortDescription}`);
-        $("temp-" + clickedCityIndex).html(`Temperature: ${clickedCity.currentWeather.temp.celcius} &degC/ ${clickedCity.currentWeather.temp.fahrenheit} &degF`);
-        $("humidity-" + clickedCityIndex).html(`Humidity: ${clickedCity.currentWeather.humidity}`);
+        $("#time-" + clickedCityIndex).html(`Current time: ${clickedCity.currentTime}`);
+        $("#weather-" + clickedCityIndex).html(`Current weather: ${clickedCity.currentWeather.shortDescription}`);
+        $("#temp-" + clickedCityIndex).html(`Temperature: ${clickedCity.currentWeather.temp.celcius} &degC/ ${clickedCity.currentWeather.temp.fahrenheit} &degF`);
+        $("#humidity-" + clickedCityIndex).html(`Humidity: ${clickedCity.currentWeather.humidity}`);
     });
 });
 
