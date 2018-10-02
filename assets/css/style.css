@@ -1,6 +1,7 @@
 body {   
     background-image: url(travelimage.jpg);
     background-size: cover;
+    min-height: 100vh;
 }
 
 /* mobile fix */
@@ -63,9 +64,9 @@ ul.dropdown-lr {
     margin-bottom: 8px;
 }
 
-#results {
-   /* float: left; */
-}
+/* #results {
+   float: left;
+} */
 
 .btn-outline-danger {
     width: 40px;
@@ -104,4 +105,13 @@ ul.dropdown-lr {
     width: 100%;
     left: 0;
     bottom: 0;
+}
+
+/* Login buttons */
+#register-submit {
+    margin-left: 15px;
+}
+
+.col-xs-5.pull-right {
+    padding: 0 5px;
 }

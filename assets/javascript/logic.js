@@ -4,7 +4,9 @@ $("#submit-search").on("click", function(event) {
     event.preventDefault();
     var userInput = $("#search").val().trim();
     console.log(userInput)
-    searchForCity(userInput);
+    if (userInput !== "") {
+        searchForCity(userInput);
+    }
 });
 
 // Function for displaying initial results to be ran after API call is complete
@@ -54,7 +56,7 @@ function displayCityInfo(city) {
             </div>
         </div>`
     );
-    $("#results").append(newDiv);
+    $("#results").prepend(newDiv);
 
     mapCity(city);
 }
