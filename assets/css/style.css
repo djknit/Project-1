@@ -83,6 +83,8 @@ ul.dropdown-lr {
     height: 300px;
     width: 400px;
     float: right;
+    margin-bottom: 60px;
+    z-index: 0;
 }
 
 /* g added*/
