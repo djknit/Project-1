@@ -1,9 +1,9 @@
 // console.log("logic");
 $("#submit-search").on("click", function(event) {
-    console.log("submit button clicked")
+    // console.log("submit button clicked")
     event.preventDefault();
     var userInput = $("#search").val().trim();
-    console.log(userInput)
+    // console.log(userInput)
     if (userInput !== "") {
         searchForCity(userInput);
     }
@@ -26,13 +26,37 @@ function displayInitialResults() {
 
 // Function to get and display city details when city from initial results is clicked
 $(document).on("click", ".initial-result", function() {
-    initialResults[$(this).attr("id")].getCityInfo();
+    // Grab chosen city
+    var chosenCity = initialResults[$(this).attr("id")];
+    // If the chosen city is already on the page, remove it before adding it again
+    // Keep track of whether the chosen city matches one already in the myCities array
+    var isChosenCityInMyCities = false;
+    // For each city in myCities...
+    myCities.forEach(function(city, index) {
+        // If the city is the same exact city as the new chosen city...
+        if (chosenCity.uniqueSearchUrl === city.uniqueSearchUrl) {
+            // Remove that city from the myCities array
+            myCities.splice(index, 1);
+            
+            isChosenCityInMyCities = true;
+        }
+    });
+    // Get the information for the chosen city from the APIs and then...
+    chosenCity.getCityInfo(function() {
+        // Add the new city to the front of the myCities array
+        myCities.unshift(chosenCity);
+        // Save the new array in local storage
+        saveCitiesInLocalStorage();
+        // Empty the page and repopulate it from the array
+        populatePageFromArray();
+    });
+    // Clear the initial results list
     $("#initial-results").empty();
 });
 
 // Function for displaying full city info to be run when the API calls are complete
 function displayCityInfo(city) {
-    console.log("display city info")
+    // console.log("display city info")
 
     var cityIndex = myCities.indexOf(city);
 
@@ -58,7 +82,7 @@ function displayCityInfo(city) {
             </div>
         </div>`
     );
-    $("#results").prepend(newDiv);
+    $("#results").append(newDiv);
 
     mapCity(city);
 }

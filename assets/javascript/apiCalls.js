@@ -45,7 +45,7 @@ function searchForCity(searchTerm) {
 
 // ----------------------------------
 // Method for getting the information about a specific city
-function getCityInfo() {
+function getCityInfo(callback) {
     // Grab the city object the method was called on
     var thisCity = this;
     // Grab the URL with unique city ID for the city chosen by the user
@@ -68,8 +68,6 @@ function getCityInfo() {
         thisCity.latitude = response.location.latlon.latitude,
         thisCity.longitude = response.location.latlon.longitude,
         thisCity.uniqueSearchUrl = thisCity.uniqueSearchUrl
-        // Push the variable to the array of cities being displayed
-        myCities.push(thisCity);
         // Do an API call to get country information using the URL returned
         $.ajax({
             url: response._links["city:country"].href,
@@ -95,7 +93,7 @@ function getCityInfo() {
                     thisCity.getCurrentTime();
                     // Set the city's current weather
                     thisCity.getCurrentWeather(function() {
-                        displayCityInfo(thisCity);
+                        callback();
                         // console.log(thisCity)
                     });
                     // console.log(thisCity);

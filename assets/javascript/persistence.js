@@ -24,13 +24,26 @@ function populatePageFromArray() {
     // Clear the current cities display
     $("#results").empty();
     destroyMap();
-    // Create new display
+    // Get current time and weather for all cities and then display info for all cities
+    getCurrentTimeAndWeatherForAll(function() {
+        myCities.forEach(function(city) {
+            displayCityInfo(city);
+        });
+    });
+}
+
+// Function to update time and weather for all cities and then run a callback
+function getCurrentTimeAndWeatherForAll(callback) {
+    var counter = 0;
     myCities.forEach(function(city) {
         // Get current time and weather information for each city
         // When the weather API call is returned and the city properties updated, display the city on page
         city.getCurrentTime();
         city.getCurrentWeather(function() {
-            displayCityInfo(city);
+            counter++;
+            if (counter === myCities.length) {
+                callback();
+            }
         });
     });
 }
