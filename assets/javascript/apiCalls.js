@@ -108,7 +108,10 @@ function getCityInfo() {
                     // Set the city's current time
                     thisCity.getCurrentTime();
                     // Set the city's current weather
-                    thisCity.getCurrentWeather();
+                    thisCity.getCurrentWeather(function() {
+                        displayCityInfo(thisCity);
+                        console.log(thisCity)
+                    });
                     console.log(thisCity);
                 }).fail(function(timeOffsetResponse) {
                     console.error(timeOffsetResponse);
@@ -137,7 +140,8 @@ function getCurrentTime() {
 
 // ----------------------------------
 // Method for setting the current temperature and air pressure of a city by querying the Open Weather API
-function getCurrentWeather() {
+function getCurrentWeather(callback) {
+    console.log("get current weather")
     var thisCity = this;
     var apiKey = "8aa4ec5578f127f51276588e1b8842c4";
     var latitude = thisCity.latitude;
@@ -157,8 +161,11 @@ function getCurrentWeather() {
         thisCity.currentWeather.pressure = response.main.pressure;
         thisCity.currentWeather.humidity = response.main.humidity;
 
-        // Run function to update display of city on page
-        displayCityInfo(thisCity);
+        // Run callback if one was given
+        if (callback) {
+            console.log("callback: " + callback)
+            callback();
+        }
     }).fail(function(response) {
         console.error(response);
     });

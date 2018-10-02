@@ -27,3 +27,11 @@ function mapCity(city) {
         marker = L.marker([city.latitude, city.longitude]).addTo(myMap);
     }
 }
+
+// Function for removing map
+function destroyMap() {
+    if (isMapInitialized) {
+        myMap.remove();
+        isMapInitialized = false;
+    }
+}

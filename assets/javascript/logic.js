@@ -32,27 +32,29 @@ $(document).on("click", ".initial-result", function() {
 
 // Function for displaying full city info to be run when the API calls are complete
 function displayCityInfo(city) {
+    console.log("display city info")
 
+    var cityIndex = myCities.indexOf(city);
 
     var newDiv = $(
-        `<div class="card city-card d-inline-block mx-1 my-1" id="${myCities.indexOf(city)}">
+        `<div class="card city-card d-inline-block mx-1 my-1" id="${cityIndex}">
             <div class="card-body">
-                <button class="btn btn-outline-danger" cityId="${myCities.indexOf(city)}">
+                <button class="btn btn-outline-danger" cityId="${cityIndex}">
                     <i class="fa fa-window-close" aria-hidden="true"></i>
                 </button>
                 <h3>${city.name}</h3>
                 <p>Population: ${city.population}</p>
-                <p>Current time: ${city.currentTime}</p>
+                <p id="time-${cityIndex}">Current time: ${city.currentTime}</p>
                 <p>Timezone: ${city.timeZone}</p>
                 <p>Country: ${city.country}</p>
                 <p>Currency: ${city.currency}</p>
-                <p>Current weather: ${city.currentWeather.shortDescription}
+                <p id="weather-${cityIndex}">Current weather: ${city.currentWeather.shortDescription}
                     <ul>
-                        <li>Temperature: ${city.currentWeather.temp.celcius} &degC/ ${city.currentWeather.temp.fahrenheit} &degF</li>
-                        <li>Humidity: ${city.currentWeather.humidity}</li>
+                        <li id="temp-${cityIndex}">Temperature: ${city.currentWeather.temp.celcius} &degC/ ${city.currentWeather.temp.fahrenheit} &degF</li>
+                        <li id="humidity-${cityIndex}">Humidity: ${city.currentWeather.humidity}</li>
                     </ul>
                 </p>
-                <button class="update btn btn-outline-primary" cityId="${myCities.indexOf(city)}">Update time and weather</button>
+                <button class="update btn btn-outline-primary" cityId="${cityIndex}">Update time and weather</button>
             </div>
         </div>`
     );
@@ -67,8 +69,13 @@ $(document).on("click", ".update", function() {
     var clickedCity = myCities[clickedCityIndex];
     // console.log(clickedCity)
     clickedCity.getCurrentTime();
-    $("#" + clickedCityIndex).remove();
-    clickedCity.getCurrentWeather();
+    // Update weather info from API and then update the relevent page content after the response is returned and the variables are updated
+    clickedCity.getCurrentWeather(function() {
+        $("time-" + clickedCityIndex).html(`Current time: ${clickedCity.currentTime}`);
+        $("weather-" + clickedCityIndex).html(`Current weather: ${clickedCity.currentWeather.shortDescription}`);
+        $("temp-" + clickedCityIndex).html(`Temperature: ${clickedCity.currentWeather.temp.celcius} &degC/ ${clickedCity.currentWeather.temp.fahrenheit} &degF`);
+        $("humidity-" + clickedCityIndex).html(`Humidity: ${clickedCity.currentWeather.humidity}`);
+    });
 });
 
 // delete city info card if the red exit button is clicked
