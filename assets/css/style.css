@@ -36,12 +36,17 @@ ul.dropdown-lr {
 }
 #initial-results{
     padding: 10px;
-    color: #3ac4c2;
+    color: rgb(45, 86, 146);
     font-size: 1.5rem;
     font-family: Arial, Helvetica, sans-serif;
+    margin: 0 20px;
+    line-height: 1.6;
 }
 #initial-results :hover{
-    background-color: rgb(0, 255, 128);
+    background-color: rgb(255, 246, 162);
+}
+#initial-results .instructions:hover {
+    background-color: transparent;
 }
 
 /* g added*/
@@ -83,6 +88,8 @@ ul.dropdown-lr {
     height: 300px;
     width: 400px;
     float: right;
+    margin-bottom: 65px;
+    z-index: 0;
 }
 
 /* g added*/

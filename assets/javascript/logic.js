@@ -12,13 +12,13 @@ $("#submit-search").on("click", function(event) {
 // Function for displaying initial results to be ran after API call is complete
 function displayInitialResults() {
     if (initialResults.length === 0) {
-        $("#initial-results").html("No results match that search. \nTry typing your search differently, or search for a different City.\nInclude only the city name or the city and country separated by a comma. Make sure that you have spelled your search correctly.");
+        $("#initial-results").html("No results match that search. Try typing your search differently, or search for a different City.<br>Include only the city name or the city and country separated by a comma. Make sure that you have spelled your search correctly.");
     }
     else {
-        $("#initial-results").html($("<p>Please click on the correct result.</p>"));
+        $("#initial-results").html($("<p class='instructions'>Please click on the correct result.</p>"));
         initialResults.forEach(function(value, index) {
-            var newP = $(`<p id="${index}" class="initial-result">`);
-            newP.html(index + ": " + value.fullName);
+            var newP = $(`<p id="${index}" class="initial-result">`);            
+            newP.html((index + 1) + ": " + value.fullName);
             $("#initial-results").append(newP);
         });
     }
