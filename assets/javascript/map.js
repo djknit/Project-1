@@ -25,3 +25,11 @@ function mapCity(city) {
     // Make new marker using city coordinates and with a title attribute of the city name and add it to the map
     var newMarker = L.marker([city.latitude, city.longitude], {title: city.name}).addTo(myMap);
 }
+
+// Function for removing map
+function destroyMap() {
+    if (isMapInitialized) {
+        myMap.remove();
+        isMapInitialized = false;
+    }
+}
