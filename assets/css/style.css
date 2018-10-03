@@ -45,10 +45,17 @@ ul.dropdown-lr {
     color: whitesmoke;
     font-size: 1.5rem;
     font-family: Arial, Helvetica, sans-serif;
+    margin: 0 20px;
+    line-height: 1.6;
 }
 #initial-results :hover{
     background-color: #e0c52d;
 }
+
+#initial-results .instructions:hover {
+    background-color: transparent;
+}
+
 .city-card {
     width: 260px;
     border: 1px solid rgb(65, 137, 245);
@@ -77,6 +84,8 @@ ul.dropdown-lr {
     height: 300px;
     width: 400px;
     float: right;
+    margin-bottom: 60px;
+    z-index: 0;
 }
 
 /* g added*/
@@ -108,4 +117,23 @@ ul.dropdown-lr {
 
 .col-xs-5.pull-right {
     padding: 0 5px;
+}
+
+/* Fixes to stop jumbotron from being covered */
+@media screen and (max-width: 853px) {
+    .jumbotron-fluid{
+        margin-top: 108px;
+    }
+}
+
+@media screen and (max-width: 714px) {
+    .jumbotron-fluid{
+        margin-top: 131.2px;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .jumbotron-fluid{
+        margin-top: 178px;
+    }
 }

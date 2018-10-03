@@ -37,20 +37,6 @@ function searchForCity(searchTerm) {
         // Run functioni to display initial results
         displayInitialResults();
 
-        // If no cities were returned...
-        if (initialResults.length === 0) {
-            // Run function to alert the user that no results were found for their search
-            // displayNoResults();
-            console.log("No cities found to match search.");
-        }
-        // If the array of matching results is not empty...
-        else {
-            // Run function to display list of city names returned and allow the user to choose correct one
-            // displayInitialResults(matchingCities);
-            initialResults.forEach(function(city, index) {
-                console.log(index + ": " + city.fullName);
-            });
-        }
     // Or if the API call returns an error...
     }).fail(function(response) {
         console.error(response);
@@ -59,7 +45,7 @@ function searchForCity(searchTerm) {
 
 // ----------------------------------
 // Method for getting the information about a specific city
-function getCityInfo() {
+function getCityInfo(callback) {
     // Grab the city object the method was called on
     var thisCity = this;
     // Grab the URL with unique city ID for the city chosen by the user
@@ -82,8 +68,6 @@ function getCityInfo() {
         thisCity.latitude = response.location.latlon.latitude,
         thisCity.longitude = response.location.latlon.longitude,
         thisCity.uniqueSearchUrl = thisCity.uniqueSearchUrl
-        // Push the variable to the array of cities being displayed
-        myCities.push(thisCity);
         // Do an API call to get country information using the URL returned
         $.ajax({
             url: response._links["city:country"].href,
@@ -108,8 +92,15 @@ function getCityInfo() {
                     // Set the city's current time
                     thisCity.getCurrentTime();
                     // Set the city's current weather
-                    thisCity.getCurrentWeather();
-                    console.log(thisCity);
+                    thisCity.getCurrentWeather(function() {
+                        callback();
+                        // console.log(thisCity)
+                    });
+                    // console.log(thisCity);
+
+                    // Store the updated myCities array in local storage
+                    saveCitiesInLocalStorage();
+
                 }).fail(function(timeOffsetResponse) {
                     console.error(timeOffsetResponse);
                 });
@@ -137,7 +128,7 @@ function getCurrentTime() {
 
 // ----------------------------------
 // Method for setting the current temperature and air pressure of a city by querying the Open Weather API
-function getCurrentWeather() {
+function getCurrentWeather(callback) {
     var thisCity = this;
     var apiKey = "8aa4ec5578f127f51276588e1b8842c4";
     var latitude = thisCity.latitude;
@@ -157,8 +148,10 @@ function getCurrentWeather() {
         thisCity.currentWeather.pressure = response.main.pressure;
         thisCity.currentWeather.humidity = response.main.humidity;
 
-        // Run function to update display of city on page
-        displayCityInfo(thisCity);
+        // Run callback if one was given
+        if (callback) {
+            callback();
+        }
     }).fail(function(response) {
         console.error(response);
     });
@@ -166,12 +159,12 @@ function getCurrentWeather() {
 
 // ---
 // Declaring a sample city to use for testing API calls for getting full city info
-var lawrence = {
-    fullName: "Lawrence, Kansas",
-    uniqueSearchUrl: "https://api.teleport.org/api/cities/geonameid:4274277/",
-    // Attaching method that will be declared below for getting the full info if city is selected
-    getCityInfo,
-    // Attaching methods used to update time and weather once city has full information attached
-    getCurrentTime,
-    getCurrentWeather
-}
+// var lawrence = {
+//     fullName: "Lawrence, Kansas",
+//     uniqueSearchUrl: "https://api.teleport.org/api/cities/geonameid:4274277/",
+//     // Attaching method that will be declared below for getting the full info if city is selected
+//     getCityInfo,
+//     // Attaching methods used to update time and weather once city has full information attached
+//     getCurrentTime,
+//     getCurrentWeather
+// }
