@@ -47,6 +47,15 @@ $(document).on("click", ".initial-result", function() {
         myCities.unshift(chosenCity);
         // Save the new array in local storage
         saveCitiesInLocalStorage();
+        // If user is logged in...
+        if (userAuthentication.isLoggedIn) {
+            // Save current cities array in user's cities
+            userAuthentication.currentUser.cities = JSON.parse(localStorage.getItem("myCities"));
+            // Update the users array in the database
+            database.ref().set({
+                users: userAuthentication.users
+            });
+        }
         // Empty the page and repopulate it from the array
         populatePageFromArray();
     });
@@ -112,7 +121,14 @@ $(document).on("click", ".btn-outline-danger", function() {
     populatePageFromArray();
     // Store the new array in local storage
     saveCitiesInLocalStorage();
-
+    if (userAuthentication.isLoggedIn) {
+        // Save current cities array in user's cities
+        userAuthentication.currentUser.cities = JSON.parse(localStorage.getItem("myCities"));
+        // Update the users array in the database
+        database.ref().set({
+            users: userAuthentication.users
+        });
+    }
 });
 
 // On page load, check local storage and populate page from cities stored in local storage

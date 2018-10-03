@@ -24,6 +24,13 @@ function populatePageFromArray() {
     // Clear the current cities display
     $("#results").empty();
     destroyMap();
+    // Hide map if there are no cities currently
+    if (myCities.length === 0) {
+        $("#my-map").attr("style", "display: none");
+    }
+    else {
+        $("#my-map").attr("style", "display: auto");
+    }
     // Get current time and weather for all cities and then display info for all cities
     getCurrentTimeAndWeatherForAll(function() {
         myCities.forEach(function(city) {
