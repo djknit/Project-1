@@ -93,9 +93,14 @@ $(document).on("click", "#register-submit", function(event) {
 
 // Function for logging a user in
 function logIn(user) {
+    // Set status to logged in as user
     userAuthentication.isLoggedIn = true;
     userAuthentication.currentUser = user;
+    // Set the myCities array using the cities associated with the user
     getCitiesForCurrentUser();
+    // Update local storage
+    saveCitiesInLocalStorage();
+    // Recreate page content using current myCities array
     populatePageFromArray();
     // Update the current user display
     switchToLogOutForm();
