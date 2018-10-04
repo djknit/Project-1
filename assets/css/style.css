@@ -137,3 +137,10 @@ ul.dropdown-lr {
         margin-top: 178px;
     }
 }
+
+@media screen and (max-width: 448px) {
+    #my-map{
+        height: 66vw;
+        width: 88vw;
+    }
+}
