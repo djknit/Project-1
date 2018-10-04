@@ -44,13 +44,14 @@ $(document).on("click", ".initial-result", function() {
     // Get the information for the chosen city from the APIs and then...
     chosenCity.getCityInfo(function() {
         // Add the new city to the front of the myCities array
-        myCities.unshift(chosenCity);
+        myCities.push(chosenCity);
         // Save the new array in local storage
         saveCitiesInLocalStorage();
         // If user is logged in...
         if (userAuthentication.isLoggedIn) {
             // Save current cities array in user's cities
             userAuthentication.currentUser.cities = JSON.parse(localStorage.getItem("myCities"));
+            userAuthentication.users[userAuthentication.indexOfCurrentUser].cities = JSON.parse(localStorage.getItem("myCities"));
             // Update the users array in the database
             database.ref().set({
                 users: userAuthentication.users
@@ -91,7 +92,7 @@ function displayCityInfo(city) {
             </div>
         </div>`
     );
-    $("#results").append(newDiv);
+    $("#results").prepend(newDiv);
 
     mapCity(city);
 }
@@ -124,6 +125,7 @@ $(document).on("click", ".btn-outline-danger", function() {
     if (userAuthentication.isLoggedIn) {
         // Save current cities array in user's cities
         userAuthentication.currentUser.cities = JSON.parse(localStorage.getItem("myCities"));
+        userAuthentication.users[userAuthentication.indexOfCurrentUser].cities = JSON.parse(localStorage.getItem("myCities"));
         // Update the users array in the database
         database.ref().set({
             users: userAuthentication.users
