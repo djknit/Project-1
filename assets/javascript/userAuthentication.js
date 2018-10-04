@@ -2,7 +2,8 @@
 var userAuthentication = {
     isLoggedIn: false,
     currentUser: null,
-    users: []
+    users: [],
+    indexOfCurrentUser: null
 }
 
 // Initialize Firebase
@@ -93,6 +94,13 @@ $(document).on("click", "#register-submit", function(event) {
 
 // Function for logging a user in
 function logIn(user) {
+    // Find index of user in users array
+    userAuthentication.users.forEach(function(eachUser, index) {
+        if (eachUser == user) {
+            userAuthentication.indexOfCurrentUser = index;
+            console.log(userAuthentication.indexOfCurrentUser);
+        }
+    });
     // Set status to logged in as user
     userAuthentication.isLoggedIn = true;
     userAuthentication.currentUser = user;

@@ -99,7 +99,7 @@ function getCityInfo(callback) {
                     // console.log(thisCity);
 
                     // Store the updated myCities array in local storage
-                    saveCitiesInLocalStorage();
+                    // saveCitiesInLocalStorage();
 
                 }).fail(function(timeOffsetResponse) {
                     console.error(timeOffsetResponse);
