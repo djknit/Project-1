@@ -1,5 +1,5 @@
 body {   
-    background-image: url("http://luminous-newyork.com/img/2007-08-moon-over-central-park-1200.jpg");
+    background-image: url("../images/cityscape.jpg");
     background-size: cover;
     min-height: 100vh;
     background-repeat: no-repeat;
@@ -29,7 +29,7 @@ ul.dropdown-lr {
 
 /*g added on 10/02*/
 .jumbotron{
-    background-image: url("https://previews.123rf.com/images/nnnnae/nnnnae1507/nnnnae150700159/41936438-voyage-du-monde-seamless-endless-texture-peut-%C3%AAtre-utilis%C3%A9-pour-le-papier-peint-motifs-de-remplissage-fo.jpg");
+    background-image: url("../images/banner.jpg");
    /* background-size: cover;*/
     background-attachment: fixed;
     background-size: 400px auto;
@@ -59,6 +59,10 @@ ul.dropdown-lr {
 .city-card {
     width: 260px;
     border: 1px solid rgb(65, 137, 245);
+}
+
+.city-card:last-child {
+    margin-bottom: 70px !important;
 }
 
 .city-card p, li {
